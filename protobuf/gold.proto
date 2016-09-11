@@ -73,29 +73,29 @@ message RefundConfirmRequest{
 }
 
 message QueryOrderResponse{
-  ResponseHeader header = 1;
+  com.echo.protocol.common.ResponseHeader header = 1;
   OrderInfo order_info = 2;
 }
 
 message OrderResponse{
-  ResponseHeader header = 1;
+  com.echo.protocol.common.ResponseHeader header = 1;
   OrderInfo order_info = 2;
 }
 
 message PayResponse{
-  ResponseHeader header = 1;
+  com.echo.protocol.common.ResponseHeader header = 1;
 }
 
 message NotifyResponse{
-  ResponseHeader header = 1;
+  com.echo.protocol.common.ResponseHeader header = 1;
 }
 
 message DeliverResponse{
-  ResponseHeader header = 1;
+  com.echo.protocol.common.ResponseHeader header = 1;
 }
 
 message DeliverConfirmResponse{
-  ResponseHeader header = 1;
+  com.echo.protocol.common.ResponseHeader header = 1;
 }
 
 message OrderInfo{
