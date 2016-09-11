@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.echo.protocol;
+package com.echo.protocol.gold;
 
 import "common.proto";
 
