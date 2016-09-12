@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package com.echo.protocol.common;
-import "google/protobuf/any.proto";
+import "any.proto";
 
 enum ResultCode{
   RESULT_CODE_EMPTY = 0; // due to the bug of scalapbc, do not use EMPTY in your code
