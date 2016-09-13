@@ -6,6 +6,10 @@ import "common.proto";
 
 // ./scalapbc-0.5.26/bin/scalapbc protocol/protocol.proto --scala_out=./src/main/scala/
 // ./lib/protoc-3.0.0-beta-3-osx-x86_64/protoc --js_out=import_style=commonjs,binary:. ./lib/protocol/protocol.proto
+//protoDescriptor.com.echo.protocol.common.ResponseHeader.decode(kv.value.value)
+//kv.setValue(protoDescriptor.google.protobuf.Any.decode(header.toBuffer()))
+//kv.withValue(com.google.protobuf.Any.parseFrom(header.toByteArray))
+//ResponseHeader.parseFrom(v.value.get.toByteArray)
 
 enum LoginType{
   LOGIN_TYPE_EMPTY = 0x00000000; // due to the bug of scalapbc, do not use EMPTY in your code
@@ -79,19 +83,7 @@ message QueryUserInfoRequest{
 
 message UpdateUserInfoRequest{
   string token = 1;
-  repeated UpdateData data = 2;
-
-  message UpdateData{
-    oneof value{
-      string username = 1;
-      string password = 2;
-      string email = 3;
-      string phonenum = 4;
-      SecurityQuestionPair security_question1 = 5;
-      SecurityQuestionPair security_question2 = 6;
-      SecurityQuestionPair security_question3 = 7;
-    }
-  }
+  repeated com.echo.protocol.common.KVField kvs = 2;
 }
 
 message AddUserAddressRequest{
@@ -141,6 +133,7 @@ message AuthenticationResponse{
 }
 
 message LogoutResponse{
+  com.echo.protocol.common.ResponseHeader header = 1;
 }
 
 message QueryUserInfoResponse{
@@ -162,4 +155,11 @@ message UpdateUserAddressResponse{
 
 message DeleteUserAddressResponse{
   com.echo.protocol.common.ResponseHeader header = 1;
+}
+
+// The captain service definition.
+service CaptainService {
+  rpc Signup (SignupRequest) returns (SignupResponse) {}
+  rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc Logout (LogoutRequest) returns (LogoutResponse) {}
 }
