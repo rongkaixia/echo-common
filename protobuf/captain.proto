@@ -30,7 +30,7 @@ enum AuthType{
 }
 
 message UserAddress{
-  string id = 1;
+  string address_id = 1;
   string recipients_name = 2;
   string recipients_phone = 3;
   string recipients_address = 4;
@@ -43,13 +43,13 @@ message SecurityQuestionPair{
 }
 
 message UserInfo{
-  string id = 1;
+  string user_id = 1;
   string username = 2;
   string email = 3;
   string phonenum = 4;
-  SecurityQuestionPair securityQuestion1 = 5;
-  SecurityQuestionPair securityQuestion2 = 6;
-  SecurityQuestionPair securityQuestion3 = 7;
+  SecurityQuestionPair security_question1 = 5;
+  SecurityQuestionPair security_question2 = 6;
+  SecurityQuestionPair security_question3 = 7;
   repeated UserAddress addresses = 8;
 }
 
@@ -66,7 +66,7 @@ message LoginRequest{
   string password = 10;
 }
 
-message AuthenticationRequest{
+message AuthRequest{
   string token = 1;
   // AuthType auth_name = 2;
 }
@@ -96,7 +96,7 @@ message AddUserAddressRequest{
 
 message UpdateUserAddressRequest{
   string token = 1;
-  string id = 2;
+  string address_id = 2;
   string recipients_name = 3;
   string recipients_phone = 4;
   string recipients_address = 5;
@@ -105,7 +105,7 @@ message UpdateUserAddressRequest{
 
 message DeleteUserAddressRequest{
   string token = 1;
-  string id = 2;
+  string address_id = 2;
 }
 
 message SignupResponse{
@@ -124,7 +124,7 @@ message LoginResponse{
   string username = 5;
 }
 
-message AuthenticationResponse{
+message AuthResponse{
   com.echo.protocol.common.ResponseHeader header = 1;
   bool is_expired = 2;
   int32 expires_in = 3;
@@ -138,7 +138,7 @@ message LogoutResponse{
 
 message QueryUserInfoResponse{
   com.echo.protocol.common.ResponseHeader header = 1;
-  UserInfo data = 2;
+  UserInfo user_info = 2;
 }
 
 message UpdateUserInfoResponse{
@@ -162,4 +162,5 @@ service CaptainService {
   rpc Signup (SignupRequest) returns (SignupResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Logout (LogoutRequest) returns (LogoutResponse) {}
+  rpc Auth (AuthRequest) returns (AuthResponse) {}
 }
