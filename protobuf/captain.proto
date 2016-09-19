@@ -83,7 +83,12 @@ message QueryUserInfoRequest{
 
 message UpdateUserInfoRequest{
   string token = 1;
-  repeated com.echo.protocol.common.KVField kvs = 2;
+  string username = 2;
+  string email = 3;
+  string phonenum = 4;
+  SecurityQuestionPair security_question1 = 5;
+  SecurityQuestionPair security_question2 = 6;
+  SecurityQuestionPair security_question3 = 7;
 }
 
 message AddUserAddressRequest{
@@ -163,4 +168,11 @@ service CaptainService {
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Logout (LogoutRequest) returns (LogoutResponse) {}
   rpc Auth (AuthRequest) returns (AuthResponse) {}
+
+  rpc QueryUserInfo(QueryUserInfoRequest) returns (QueryUserInfoResponse) {}
+  rpc UpdateUserInfo(UpdateUserInfoRequest) returns (UpdateUserInfoResponse) {}
+  
+  rpc AddUserAddress(AddUserAddressRequest) returns (AddUserAddressResponse) {}
+  rpc UpdateUserAddress(UpdateUserAddressRequest) returns (UpdateUserAddressResponse) {}
+  rpc DeleteUserAddress(DeleteUserAddressRequest) returns (DeleteUserAddressResponse) {}
 }

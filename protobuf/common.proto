@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package com.echo.protocol.common;
-import "any.proto";
+import "google/protobuf/any.proto";
 
 enum ResultCode{
   RESULT_CODE_EMPTY = 0; // due to the bug of scalapbc, do not use EMPTY in your code
@@ -29,9 +29,6 @@ enum ResultCode{
   // auth error
   INVALID_SESSION_TOKEN = 50001;
   SESSION_TOKEN_EXPIRED = 50002;
-
-  // update error
-  ILLEGAL_ARGUMENT = 60001;
 }
 
 message ResponseHeader{
