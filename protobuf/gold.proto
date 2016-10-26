@@ -72,9 +72,18 @@ message RefundConfirmRequest{
   string order_id = 1;
 }
 
+message QueryOrderWithUserRequest{
+  string user_id = 1;
+}
+
 message QueryOrderResponse{
   com.echo.protocol.common.ResponseHeader header = 1;
   OrderInfo order_info = 2;
+}
+
+message QueryOrderWithUserResponse{
+  com.echo.protocol.common.ResponseHeader header = 1;
+  repeated OrderInfo order_info = 2;
 }
 
 message OrderResponse{
@@ -123,6 +132,7 @@ message OrderInfo{
 // The order service definition.
 service OrderService {
   rpc QueryOrder (QueryOrderRequest) returns (QueryOrderResponse) {}
+  rpc QueryOrderWithUser (QueryOrderWithUserRequest) returns (QueryOrderWithUserResponse) {}
   rpc Order (OrderRequest) returns (OrderResponse) {}
   // rpc Pay (PayRequest) returns (PayResponse) {}
   rpc Notify (NotifyRequest) returns (NotifyResponse) {}
