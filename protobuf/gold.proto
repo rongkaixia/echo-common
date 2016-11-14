@@ -127,6 +127,8 @@ message OrderInfo{
   double pay_amt = 23; // 应支付价格 = real_price * num
   double real_pay_amt = 24; // 实际支付价格 = real_price * num + discount
   OrderState state = 30; // 订单状态
+  int64 create_at = 40;
+  int64 update_at = 41;
 }
 
 // The order service definition.
