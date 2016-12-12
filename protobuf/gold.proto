@@ -79,6 +79,10 @@ message RefundConfirmRequest{
   string order_id = 1;
 }
 
+message CancelRequest{
+  string order_id = 1;
+}
+
 message QueryOrderWithUserRequest{
   string user_id = 1;
 }
@@ -111,6 +115,18 @@ message DeliverResponse{
 }
 
 message DeliverConfirmResponse{
+  com.echo.protocol.common.ResponseHeader header = 1;
+}
+
+message RefundResponse{
+  com.echo.protocol.common.ResponseHeader header = 1;
+}
+
+message RefundConfirmResponse{
+  com.echo.protocol.common.ResponseHeader header = 1;
+}
+
+message CancelResponse{
   com.echo.protocol.common.ResponseHeader header = 1;
 }
 
@@ -150,4 +166,7 @@ service OrderService {
   rpc Notify (NotifyRequest) returns (NotifyResponse) {}
   rpc Deliver (DeliverRequest) returns (DeliverResponse) {}
   rpc DeliverConfirm (DeliverConfirmRequest) returns (DeliverConfirmResponse) {}
+  rpc Cancel (CancelRequest) returns (CancelResponse) {}
+  rpc Refund (RefundRequest) returns (RefundResponse) {}
+  rpc RefundConfirm (RefundConfirmRequest) returns (RefundConfirmResponse) {}
 }
