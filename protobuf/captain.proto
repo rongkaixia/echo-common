@@ -29,6 +29,10 @@ enum AuthType{
   WEIBO = 0x00000003;
 }
 
+// 购物车
+message Cart {
+}
+
 message UserAddress{
   string address_id = 1;
   string recipients_name = 2;

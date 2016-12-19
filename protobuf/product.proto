@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.echo.protocol.product;
+
+import "common.proto";
+
+message ProductInfo{
+  string product_id = 2; //商品ID
+  int32 num = 3; //商品数量
+  double price = 4; // 商品原始单价
+  double real_price = 5; // 商品实际单价，促销等情况
+  double discount = 6; // 优惠，例如两件以上减200块之类的，如-100
+  double total = 7; // 总价, total = real_price * num + discount
+}
