@@ -15,7 +15,6 @@ enum DeliverMethod{
   DELIVER_METHOD_EMPTY = 0x00000000;
   EXPRESS = 0x00000001; //快递
   DTD = 0x00000002; //送货上门，door-to-door
-
 }
 
 enum OrderState{

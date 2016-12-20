@@ -10,6 +10,7 @@ import "common.proto";
 //kv.setValue(protoDescriptor.google.protobuf.Any.decode(header.toBuffer()))
 //kv.withValue(com.google.protobuf.Any.parseFrom(header.toByteArray))
 //ResponseHeader.parseFrom(v.value.get.toByteArray)
+//sbt protobuf:protobufGenerate
 
 enum LoginType{
   LOGIN_TYPE_EMPTY = 0x00000000; // due to the bug of scalapbc, do not use EMPTY in your code
@@ -29,8 +30,12 @@ enum AuthType{
   WEIBO = 0x00000003;
 }
 
-// 购物车
-message Cart {
+// 购物车条目
+message CartItem {
+  string product_id = 1; //商品ID
+  int32 num = 2; //商品数量
+  int64 create_at = 10; // 创建时间
+  int64 update_at = 11; // 最后更新时间
 }
 
 message UserAddress{
@@ -55,6 +60,7 @@ message UserInfo{
   SecurityQuestionPair security_question2 = 6;
   SecurityQuestionPair security_question3 = 7;
   repeated UserAddress addresses = 8;
+  repeated CartItem cart = 9;
 }
 
 message SignupRequest{
@@ -118,6 +124,18 @@ message DeleteUserAddressRequest{
   string address_id = 2;
 }
 
+//增加或更新用户的购物车
+message UpdateUserCartRequest{
+  string token = 1;
+  string product_id = 2;
+  int32 num = 3;
+}
+
+message DeleteUserCartRequest{
+  string token = 1;
+  string product_id = 2;
+}
+
 message SignupResponse{
   com.echo.protocol.common.ResponseHeader header = 1;
   string token = 2;
@@ -167,6 +185,14 @@ message DeleteUserAddressResponse{
   com.echo.protocol.common.ResponseHeader header = 1;
 }
 
+message UpdateUserCartResponse{
+  com.echo.protocol.common.ResponseHeader header = 1;
+}
+
+message DeleteUserCartResponse{
+  com.echo.protocol.common.ResponseHeader header = 1;
+}
+
 // The captain service definition.
 service CaptainService {
   rpc Signup (SignupRequest) returns (SignupResponse) {}
@@ -180,4 +206,7 @@ service CaptainService {
   rpc AddUserAddress(AddUserAddressRequest) returns (AddUserAddressResponse) {}
   rpc UpdateUserAddress(UpdateUserAddressRequest) returns (UpdateUserAddressResponse) {}
   rpc DeleteUserAddress(DeleteUserAddressRequest) returns (DeleteUserAddressResponse) {}
+
+  rpc UpdateUserCart(UpdateUserCartRequest) returns (UpdateUserCartResponse) {}
+  rpc DeleteUserCart(DeleteUserCartRequest) returns (DeleteUserCartResponse) {}
 }
