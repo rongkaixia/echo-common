@@ -32,7 +32,7 @@ enum AuthType{
 
 // 购物车条目
 message CartItem {
-  string product_id = 1; //商品ID
+  string sku_id = 1; //商品ID
   int32 num = 2; //商品数量
   int64 create_at = 10; // 创建时间
   int64 update_at = 11; // 最后更新时间
@@ -127,13 +127,13 @@ message DeleteUserAddressRequest{
 //增加或更新用户的购物车
 message UpdateUserCartRequest{
   string token = 1;
-  string product_id = 2;
+  string sku_id = 2;
   int32 num = 3;
 }
 
 message DeleteUserCartRequest{
   string token = 1;
-  string product_id = 2;
+  string sku_id = 2;
 }
 
 message SignupResponse{
