@@ -4,8 +4,8 @@ package com.echo.protocol.product;
 
 import "common.proto";
 
-message ProductInfo{
-  string product_id = 2; //商品ID
+message ItemInfo{
+  string sku_id = 2; //商品 sku id
   int32 num = 3; //商品数量
   double price = 4; // 商品原始单价
   double real_price = 5; // 商品实际单价，促销等情况
